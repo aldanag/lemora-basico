@@ -1,5 +1,9 @@
 // Datos compartidos de los planes (precios, funciones y links). Los usan la landing y /basico.
 
+// Página con todos los planes (la landing de Lemora). TODO: cambiar a https://lemora.lat/#planes
+// cuando lemora.lat sirva la landing.
+export const LANDING_PLANES = "https://landing-lemora.vercel.app/#planes"
+
 export const WHATSAPP_TRIAL_LINK =
   "https://wa.me/543515957014?text=Hola,%20quiero%20probar%20Lemora%20gratis"
 

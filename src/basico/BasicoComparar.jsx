@@ -2,9 +2,9 @@ import { useRef } from "react"
 import { useReveal } from "../lib/motion"
 import Button from "../components/Button"
 import Tick from "../components/Tick"
-import { peso, plans } from "../lib/planes"
+import { LANDING_PLANES, peso, plans } from "../lib/planes"
 
-// Las listas salen de los mismos datos que las tarjetas de la landing, así no se desfasan.
+// Las listas salen de los mismos datos que las tarjetas de planes, así no se desfasan.
 const nombre = (f) => f.text ?? f
 const basico = plans.find((p) => p.name === "Básico")
 const conBasico = basico.features.map(nombre)
@@ -74,7 +74,7 @@ export default function BasicoComparar() {
         </div>
 
         <div data-reveal className="mt-8 flex justify-center">
-          <Button href="/#planes" variant="secondary" size="lg" className="w-full max-w-xs sm:w-56">
+          <Button href={LANDING_PLANES} variant="secondary" size="lg" className="w-full max-w-xs sm:w-56">
             Ver todos los planes
           </Button>
         </div>

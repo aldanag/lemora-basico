@@ -1,12 +1,19 @@
-# Lemora · landing
+# Lemora · plan Básico
 
-Versión corta (landing) del sitio de Lemora: tu tienda online, sin comisiones, con los pedidos directo en WhatsApp.
+Sitio del plan Básico de Lemora: tu tienda online completa desde $9.000 al mes, con los pedidos directo en WhatsApp. Es un sitio de una sola página que vive en la raíz (`/`); sale de la misma base que la landing, pero se mantiene por separado.
 
-Hecha con React 19, Vite, Tailwind CSS v4 y GSAP.
+Hecho con React 19, Vite, Tailwind CSS v4 y GSAP.
 
 ## Secciones
 
-Hero · Cómo funciona · Prueba gratis · Funcionalidades · Testimonios · Planes · Preguntas frecuentes · Footer
+Hero · Ejemplos · Para quién · Así se ve (panel y tienda) · Qué incluye · Precio · Cómo empezar · ¿Básico o Premium? · Prueba gratis · Preguntas frecuentes · Footer
+
+## Imágenes
+
+- `src/assets/basico/panel-1` a `panel-12`: capturas del panel (menú clickeable de "Así se ve").
+- `src/assets/basico/tienda-1` a `tienda-3`: capturas de la tienda terminada (pestaña "Tu tienda"; todavía faltan).
+- `src/assets/basico/bloque-1` a `bloque-9`: imágenes de cada bloque de "Qué incluye".
+- `src/assets/basico/ejemplo-1` a `ejemplo-3`: tiendas de ejemplo.
 
 ## Cómo correrla
 
