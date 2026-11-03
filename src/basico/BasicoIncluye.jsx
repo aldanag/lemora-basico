@@ -35,7 +35,7 @@ const bloques = [
     body: "Cargás cada producto o servicio desde el panel, con sus fotos, su precio, stock y características, y aparece en tu tienda. Sin tope y sin ningún costo adicional.",
     incluye: ["Cargá productos o servicios ilimitados"],
     sugerencia: "El panel creando un producto o un servicio, y cómo se ve en la tienda",
-    alt: "Panel de Lemora donde se crea un producto o un servicio, junto a cómo se ve en la tienda",
+    alt: "Listado de productos y servicios del panel de Lemora, junto a la ficha de un producto en la tienda",
   },
   {
     n: 3,
@@ -57,7 +57,7 @@ const bloques = [
     body: "Un carrusel y banners en tu tienda, para que lo que querés vender y promocionar sea lo primero que se vea.",
     incluye: ["Carrusel de hasta 8 imágenes", "3 banners promocionales"],
     sugerencia: "El carrusel con un banner de oferta arriba de los productos",
-    alt: "Carrusel y banner promocional arriba de una grilla de productos",
+    alt: "Carrusel del panel de Lemora, junto a cómo se ven el carrusel y un banner promocional en la tienda",
   },
   {
     n: 5,
@@ -66,7 +66,7 @@ const bloques = [
     body: "Un carrito integrado suma las cantidades y calcula el total. El pedido te llega con todos los datos del cliente, sin intermediarios y sin comisiones por venta.",
     incluye: ["Carrito de compras", "Pedido directo a tu WhatsApp", "Gestión de pedidos"],
     sugerencia: "El carrito, o el pedido llegando por WhatsApp",
-    alt: "Pedido nuevo en WhatsApp con los datos del cliente, los productos y el total",
+    alt: "Carrito de compras y el pedido nuevo en WhatsApp con los datos del cliente, los productos y el total",
   },
   {
     n: 6,
@@ -84,7 +84,7 @@ const bloques = [
     body: "Una página de contacto con formulario y mapa de ubicación, además de un botón de WhatsApp presente en toda la tienda para contacto directo.",
     incluye: ["Página de contacto con formulario y mapa"],
     sugerencia: "La página de contacto con formulario, mapa, redes y botón de WhatsApp",
-    alt: "Página de contacto de una tienda con formulario, mapa, redes sociales y botón de WhatsApp",
+    alt: "Página de contacto de una tienda con formulario, mapa y botón de WhatsApp",
   },
   {
     n: 8,
@@ -93,7 +93,7 @@ const bloques = [
     body: "Una página de preguntas frecuentes para que tus clientes encuentren todo sobre pedidos, pagos, envíos y devoluciones sin escribirte.",
     incluye: ["Preguntas frecuentes"],
     sugerencia: "La página de preguntas frecuentes en un celular",
-    alt: "Página de preguntas frecuentes de una tienda, en un celular",
+    alt: "Página de preguntas frecuentes de una tienda, con una respuesta desplegada",
   },
   {
     n: 9,
@@ -163,7 +163,7 @@ function Bloque({ bloque, invertido }) {
 
 // Llamado a la acción entre bloques. `tono` cambia el fondo para no repetir el mismo panel.
 function Cta({ titulo, texto, tono = "lilac" }) {
-  const fondo = tono === "lilac" ? "bg-lilac" : "bg-white ring-1 ring-ink/10"
+  const fondo = tono === "lilac" ? "bg-lilac" : "bg-mist"
   return (
     <div
       data-reveal
@@ -190,7 +190,7 @@ export default function BasicoIncluye() {
   useReveal(root)
 
   return (
-    <section id="incluye" ref={root} className="bg-mist py-16">
+    <section id="incluye" ref={root} className="bg-white py-16">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="text-center">
           <span

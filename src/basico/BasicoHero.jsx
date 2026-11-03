@@ -32,8 +32,8 @@ export default function BasicoHero() {
   return (
     <section id="top" ref={root} className="mx-auto max-w-[112rem] px-3 pt-[4.5rem] md:px-5 md:pt-24">
       <div className="relative overflow-hidden rounded-[2rem] bg-lilac md:rounded-[2.5rem]">
-        <div className="mx-auto grid max-w-[88rem] items-center gap-8 px-5 py-10 lg:min-h-[31rem] md:grid-cols-[1.05fr_1fr] md:gap-4 md:px-10 md:py-14 lg:px-14">
-          <div className="text-center md:text-left lg:max-w-[29rem]">
+        <div className="mx-auto grid max-w-[88rem] items-center gap-8 px-5 py-10 lg:min-h-[31rem] 2xl:min-h-[40rem] md:grid-cols-[1.05fr_1fr] md:gap-4 md:px-10 md:py-14 lg:px-14">
+          <div className="text-center md:text-left">
             <span
               data-reveal
               className="inline-block rounded-full bg-lime px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink sm:px-3 sm:text-[12.5px] sm:tracking-[0.09em]"
@@ -42,20 +42,20 @@ export default function BasicoHero() {
             </span>
             <h1
               data-words
-              className="mt-4 text-[clamp(30px,8.6vw,38px)] font-bold leading-[1.05] text-ink md:text-[46px] lg:max-w-[8.2em] xl:text-[56px]"
+              className="mt-4 text-balance text-[clamp(30px,8.6vw,38px)] font-bold leading-[1.05] text-ink md:text-[46px] lg:text-[clamp(38px,3.3vw,52px)]"
             >
               Tu tienda online completa, desde $9.000 al mes.
             </h1>
             <p
               data-reveal
-              className="mx-auto mt-4 max-w-xl text-base font-semibold text-ink md:mx-0 md:text-[19px] lg:max-w-[25rem]"
+              className="mx-auto mt-4 max-w-xl text-base font-semibold text-ink md:mx-0 md:text-[19px] lg:max-w-[36rem] lg:text-[18px]"
             >
               Configurá tu tienda para productos o servicios de manera ilimitada, con reserva de
               turnos y pedidos directo a tu WhatsApp. Sin comisiones por venta y sin permanencia.
             </p>
             <div
               data-reveal
-              className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center md:flex-col md:items-start lg:max-w-[25rem] lg:flex-row lg:items-center lg:justify-start"
+              className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center md:flex-col md:items-start lg:max-w-[28rem] lg:flex-row lg:items-center lg:justify-start"
             >
               <Button
                 href={WHATSAPP_TRIAL_LINK}
