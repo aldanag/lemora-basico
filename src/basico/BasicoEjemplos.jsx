@@ -14,9 +14,9 @@ const fotos = import.meta.glob("../assets/basico/ejemplo-*.{webp,png,jpg}", {
 })
 const fotoDe = (n) => Object.entries(fotos).find(([ruta]) => ruta.includes(`ejemplo-${n}.`))?.[1]
 
-// TODO: completar el nombre, el rubro y el link real de cada tienda de ejemplo.
+// TODO: completar el nombre, el rubro y el link real de las tiendas 2 y 3.
 const tiendas = [
-  { n: 1, nombre: "Nombre de la tienda", rubro: "Rubro", href: EJEMPLO_WEB_LINK },
+  { n: 1, nombre: "Tommy Tommy", rubro: "Pizzería", href: "https://tommytommy.lemora.lat/" },
   { n: 2, nombre: "Nombre de la tienda", rubro: "Rubro", href: EJEMPLO_WEB_LINK },
   { n: 3, nombre: "Nombre de la tienda", rubro: "Rubro", href: EJEMPLO_WEB_LINK },
 ]
@@ -64,12 +64,12 @@ export default function BasicoEjemplos() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group block overflow-hidden rounded-2xl bg-mist ring-1 ring-ink/10 focus-ring"
-                  aria-label={`Ver la tienda de ejemplo ${t.n}`}
+                  aria-label={`Ver la tienda ${t.nombre}`}
                 >
                   {foto ? (
                     <img
                       src={foto}
-                      alt={`Mockup de la tienda de ejemplo ${t.n}`}
+                      alt={`Mockup de la tienda ${t.nombre}`}
                       loading="lazy"
                       decoding="async"
                       className="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
