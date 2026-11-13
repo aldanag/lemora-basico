@@ -1,29 +1,65 @@
-import { useRef } from "react"
+import { useCallback, useEffect, useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowUpRightFromSquare, faImage } from "@fortawesome/free-solid-svg-icons"
+import { faArrowUpRightFromSquare } from "@fortawesome/free-solid-svg-icons"
 import { useReveal } from "../lib/motion"
 import Button from "../components/Button"
+import DispositivosTienda, { prefiereQuieto } from "./DispositivosTienda"
 import { EJEMPLO_WEB_LINK } from "../lib/planes"
 
-// Mockups de las tiendas de ejemplo: guardalos en src/assets/basico/ como ejemplo-1, ejemplo-2 y
-// ejemplo-3 (.webp, .png o .jpg, de 1000 px de ancho o más, cualquier proporción). La página los
-// toma sola; mientras no estén, se ve un recuadro de ejemplo.
+// Cada tienda se muestra en una pantalla de escritorio y un celular con un video del scroll (ver
+// DispositivosTienda.jsx para los nombres de los videos). Si en cambio guardás una imagen suelta en
+// src/assets/basico/ como ejemplo-1, ejemplo-2 o ejemplo-3 (.webp, .png o .jpg), se muestra esa.
 const fotos = import.meta.glob("../assets/basico/ejemplo-*.{webp,png,jpg}", {
   eager: true,
   import: "default",
 })
 const fotoDe = (n) => Object.entries(fotos).find(([ruta]) => ruta.includes(`ejemplo-${n}.`))?.[1]
 
-// TODO: completar el nombre, el rubro y el link real de las tiendas 2 y 3.
 const tiendas = [
   { n: 1, nombre: "Tommy Tommy", rubro: "Pizzería", href: "https://tommytommy.lemora.lat/" },
-  { n: 2, nombre: "Nombre de la tienda", rubro: "Rubro", href: EJEMPLO_WEB_LINK },
-  { n: 3, nombre: "Nombre de la tienda", rubro: "Rubro", href: EJEMPLO_WEB_LINK },
+  { n: 2, nombre: "Amber Parfums", rubro: "Perfumería", href: "https://amberparfums.lemora.lat/" },
+  { n: 3, nombre: "Belova", rubro: "Estética", href: "https://belova.lemora.lat/" },
 ]
+
+// Cómo se mueven: "juntas" = las tres tiendas a la vez, cada video en bucle (al terminar arranca de
+// nuevo desde arriba); "turnos" = de a una, de izquierda a derecha. Probá con ?modo=juntas o ?modo=turnos.
+const MODO = "juntas"
+// Barra del navegador con la dirección de cada tienda. Probá con ?navegador=1 (o ?navegador=0).
+const NAVEGADOR = false
 
 export default function BasicoEjemplos() {
   const root = useRef(null)
+  const grilla = useRef(null)
+  const [modo, setModo] = useState(MODO)
+  const [navegador, setNavegador] = useState(NAVEGADOR)
+  // Con "reducir movimiento" no arranca ningún video solo: se mueve la tarjeta sobre la que está el mouse.
+  const [quieto] = useState(prefiereQuieto)
+  const [activa, setActiva] = useState(quieto ? -1 : 0) // solo se usa en modo "turnos" o con "reducir movimiento"
+  const [visible, setVisible] = useState(false)
   useReveal(root)
+
+  const todasJuntas = modo === "juntas" && !quieto
+  const siguiente = useCallback(() => {
+    if (!quieto && modo === "turnos") setActiva((a) => (a + 1) % tiendas.length)
+  }, [quieto, modo])
+
+  useEffect(() => {
+    const el = grilla.current
+    if (!el || !("IntersectionObserver" in window)) {
+      setVisible(true)
+      return
+    }
+    const io = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.4 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const m = new URLSearchParams(window.location.search).get("modo")
+    if (m && ["juntas", "turnos"].includes(m.toLowerCase())) setModo(m.toLowerCase())
+    const nav = new URLSearchParams(window.location.search).get("navegador")
+    if (nav === "1" || nav === "0") setNavegador(nav === "1")
+  }, [])
 
   return (
     <section
@@ -50,20 +86,24 @@ export default function BasicoEjemplos() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {tiendas.map((t) => {
+        <div ref={grilla} className="mt-10 grid gap-5 md:grid-cols-3">
+          {tiendas.map((t, i) => {
             const foto = fotoDe(t.n)
             return (
               <article
                 key={t.n}
                 data-reveal
+                onMouseEnter={() => setActiva(i)}
+                onFocus={() => setActiva(i)}
+                onMouseLeave={() => quieto && setActiva(-1)}
+                onBlur={() => quieto && setActiva(-1)}
                 className="flex flex-col rounded-3xl bg-white p-4 ring-1 ring-ink/10"
               >
                 <a
                   href={t.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group block overflow-hidden rounded-2xl bg-mist ring-1 ring-ink/10 focus-ring"
+                  className="group block overflow-hidden rounded-2xl bg-ink ring-1 ring-ink/10 focus-ring"
                   aria-label={`Ver la tienda ${t.nombre}`}
                 >
                   {foto ? (
@@ -75,13 +115,14 @@ export default function BasicoEjemplos() {
                       className="block h-auto w-full transition-transform duration-700 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                     />
                   ) : (
-                    <div className="flex aspect-[4/3] w-full flex-col items-center justify-center gap-2 bg-primary-tint p-6 text-center text-primary">
-                      <FontAwesomeIcon icon={faImage} className="h-10 w-10" aria-hidden="true" />
-                      <p className="text-sm font-bold uppercase tracking-[0.09em]">Mockup {t.n}</p>
-                      <p className="text-xs font-semibold text-ink-muted">
-                        Cualquier proporción · 1000 px de ancho o más
-                      </p>
-                    </div>
+                    <DispositivosTienda
+                      n={t.n}
+                      jugando={visible && (todasJuntas || activa === i)}
+                      alTerminar={siguiente}
+                      bucle={todasJuntas || quieto}
+                      navegador={navegador}
+                      dominio={new URL(t.href).hostname}
+                    />
                   )}
                 </a>
                 <div className="mt-4 px-1">
