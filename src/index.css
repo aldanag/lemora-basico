@@ -90,3 +90,26 @@ body {
     line-height: 1.1;
   }
 }
+
+/* Ejemplos (formato nuevo): la captura larga de la tienda se desliza muy suave dentro de su pantalla.
+   --hasta = cuánto sube (en % del alto de la imagen); --dur = cuánto tarda en ir y volver. */
+@keyframes scroll-suave {
+  0%,
+  10% {
+    transform: translateY(0);
+  }
+  90%,
+  100% {
+    transform: translateY(var(--hasta, -50%));
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .scroll-suave {
+    animation: scroll-suave var(--dur, 30s) ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  .group:hover .scroll-suave,
+  .group:focus-visible .scroll-suave {
+    animation-play-state: paused;
+  }
+}

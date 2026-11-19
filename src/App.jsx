@@ -4,6 +4,7 @@ import TrialBanner from "./components/TrialBanner"
 import Footer from "./components/Footer"
 import BasicoHero from "./basico/BasicoHero"
 import BasicoEjemplos from "./basico/BasicoEjemplos"
+import BasicoEjemplosNuevo from "./basico/BasicoEjemplosNuevo"
 import BasicoPara from "./basico/BasicoPara"
 import BasicoAsiSeVe from "./basico/BasicoAsiSeVe"
 import BasicoIncluye from "./basico/BasicoIncluye"
@@ -77,6 +78,7 @@ export default function BasicoApp() {
       <main>
         <BasicoHero />
         <BasicoEjemplos />
+        <BasicoEjemplosNuevo />
         <BasicoPara />
         <BasicoAsiSeVe />
         <BasicoIncluye />
