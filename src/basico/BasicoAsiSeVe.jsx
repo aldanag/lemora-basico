@@ -84,6 +84,7 @@ function PanelCelular() {
       <div className="flex aspect-[374/792] flex-col items-center justify-center gap-3 overflow-hidden rounded-[2rem] bg-primary-tint p-6 text-center text-primary">
         <FontAwesomeIcon icon={faImage} className="h-10 w-10" aria-hidden="true" />
         <p className="text-sm font-bold uppercase tracking-[0.09em]">Panel en el celular</p>
+        <p className="text-sm font-bold uppercase tracking-[0.09em] text-red-600">Pendiente</p>
       </div>
     </div>
   )
@@ -186,6 +187,13 @@ export default function BasicoAsiSeVe() {
             </div>
             <div className="hidden w-12 sm:block" aria-hidden="true" />
           </div>
+
+          {/* Cartel provisorio: las capturas del panel se rehacen con los datos de Tommy Tommy */}
+          {esPanel && (
+            <p className="absolute right-4 top-16 z-10 rounded-md bg-white/90 px-3 py-1 text-sm font-extrabold uppercase tracking-[0.08em] text-red-600 shadow-sm">
+              Pendiente
+            </p>
+          )}
 
           {/* Las capturas se apilan en la misma celda y se funden entre sí */}
           {!esPanel ? (
