@@ -3,6 +3,7 @@ import { useReveal } from "../lib/motion"
 import Button from "../components/Button"
 import Tick from "../components/Tick"
 import { anualLink, BASICO_CHECKOUT_LINK, peso, plans, WHATSAPP_TRIAL_LINK } from "../lib/planes"
+import { INSIGNIA } from "../lib/pastillas"
 
 const basico = plans.find((p) => p.name === "Básico")
 // Las funciones que más pesan en la decisión van en negrita.
@@ -53,7 +54,7 @@ export default function BasicoPrecio() {
               >
                 {op.label}
                 {op.badge && (
-                  <span className="rounded-full bg-lime px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-ink">
+                  <span className={INSIGNIA}>
                     {op.badge}
                   </span>
                 )}

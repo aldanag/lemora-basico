@@ -3,7 +3,6 @@ import FAQ, { faqsDefault } from "./components/FAQ"
 import TrialBanner from "./components/TrialBanner"
 import Footer from "./components/Footer"
 import BasicoHero from "./basico/BasicoHero"
-import BasicoEjemplos from "./basico/BasicoEjemplos"
 import BasicoEjemplosNuevo from "./basico/BasicoEjemplosNuevo"
 import BasicoPara from "./basico/BasicoPara"
 import BasicoAsiSeVe from "./basico/BasicoAsiSeVe"
@@ -77,7 +76,6 @@ export default function BasicoApp() {
       <Nav links={links} />
       <main>
         <BasicoHero />
-        <BasicoEjemplos />
         <BasicoEjemplosNuevo />
         <BasicoPara />
         <BasicoAsiSeVe />

@@ -5,6 +5,17 @@ import { useReveal } from "../lib/motion"
 import Button from "../components/Button"
 import Tick from "../components/Tick"
 import { WHATSAPP_TRIAL_LINK } from "../lib/planes"
+import { ETIQUETA } from "../lib/pastillas"
+import EscenaMarco from "../components/EscenaMarco"
+import EscenaConfigura from "../components/escenas/EscenaConfigura"
+import EscenaCargar from "../components/escenas/EscenaCargar"
+import EscenaTurnosPanel from "../components/escenas/EscenaTurnosPanel"
+import EscenaSlider from "../components/escenas/EscenaSlider"
+import EscenaPedido from "../components/escenas/EscenaPedido"
+import EscenaFavoritos from "../components/escenas/EscenaFavoritos"
+import EscenaContacto from "../components/escenas/EscenaContacto"
+import EscenaPreguntas from "../components/escenas/EscenaPreguntas"
+import EscenaAds from "../components/escenas/EscenaAds"
 
 // Imágenes de cada bloque: guardá los archivos en src/assets/basico/ con el nombre
 // bloque-1 a bloque-9 (.webp, .png o .jpg, capturas de cualquier proporción, de 1000 px de ancho
@@ -38,19 +49,6 @@ const bloques = [
     alt: "Listado de productos y servicios del panel de Lemora, junto a la ficha de un producto en la tienda",
   },
   {
-    n: 3,
-    etiqueta: "Tus turnos",
-    title: "Tus clientes reservan turno en los horarios que vos elegís.",
-    body: "Si tu tienda es de servicios, tus clientes reservan su turno desde la tienda. Gestioná todos tus turnos en tu calendario, desde el panel.",
-    incluye: [
-      "Reserva de turnos para servicios",
-      "Horarios disponibles a tu elección",
-      "Calendario de turnos en tu panel",
-    ],
-    sugerencia: "El calendario del panel con los turnos, y la reserva en la tienda",
-    alt: "Calendario del panel de Lemora con los turnos reservados, junto a la pantalla donde un cliente reserva su turno",
-  },
-  {
     n: 4,
     etiqueta: "Que te vean",
     title: "Destacá tus ofertas y novedades apenas entran.",
@@ -78,6 +76,15 @@ const bloques = [
     alt: "Productos de una tienda con el botón de favoritos",
   },
   {
+    n: 8,
+    etiqueta: "Menos preguntas",
+    title: "Respondé las dudas una sola vez y mostrá que otros ya compraron.",
+    body: "Preguntas frecuentes para que tus clientes encuentren todo sobre pedidos, pagos, envíos y devoluciones sin escribirte. Y reseñas de clientes en tu tienda, que funcionan como prueba social y les dan confianza para comprar.",
+    incluye: ["Preguntas frecuentes", "Reseñas de clientes"],
+    sugerencia: "Las preguntas frecuentes y las reseñas de clientes en una tienda",
+    alt: "Preguntas frecuentes de una tienda con una respuesta desplegada, junto a las reseñas de clientes",
+  },
+  {
     n: 7,
     etiqueta: "Que te escriban",
     title: "Tus datos y tu WhatsApp, siempre a la vista.",
@@ -87,13 +94,17 @@ const bloques = [
     alt: "Página de contacto de una tienda con formulario, mapa y botón de WhatsApp",
   },
   {
-    n: 8,
-    etiqueta: "Menos preguntas",
-    title: "Respondé las dudas una sola vez.",
-    body: "Una página de preguntas frecuentes para que tus clientes encuentren todo sobre pedidos, pagos, envíos y devoluciones sin escribirte.",
-    incluye: ["Preguntas frecuentes"],
-    sugerencia: "La página de preguntas frecuentes en un celular",
-    alt: "Página de preguntas frecuentes de una tienda, con una respuesta desplegada",
+    n: 3,
+    etiqueta: "Tus turnos",
+    title: "Tus clientes reservan turno en los horarios que vos elegís.",
+    body: "Si tu tienda es de servicios, tus clientes reservan su turno desde la tienda. Gestioná todos tus turnos en tu calendario, desde el panel.",
+    incluye: [
+      "Reserva de turnos para servicios",
+      "Horarios disponibles a tu elección",
+      "Calendario de turnos en tu panel",
+    ],
+    sugerencia: "El calendario del panel con los turnos, y la reserva en la tienda",
+    alt: "Calendario del panel de Lemora con los turnos reservados, junto a la pantalla donde un cliente reserva su turno",
   },
   {
     n: 9,
@@ -106,12 +117,26 @@ const bloques = [
   },
 ]
 
+// Cada bloque tiene su escena animada (en vez de una captura fija). Si falta una, se usa la captura bloque-N.
+const ESCENAS = {
+  1: <EscenaConfigura />,
+  2: <EscenaCargar />,
+  3: <EscenaTurnosPanel />,
+  4: <EscenaSlider />,
+  5: <EscenaPedido />,
+  6: <EscenaFavoritos />,
+  7: <EscenaContacto />,
+  8: <EscenaPreguntas />,
+  9: <EscenaAds />,
+}
+
 function Bloque({ bloque, invertido }) {
   const foto = fotoDe(bloque.n)
+  const escena = ESCENAS[bloque.n]
   return (
     <div className="grid items-center gap-8 md:grid-cols-2 md:gap-14">
       <div data-reveal className={invertido ? "md:order-2" : ""}>
-        <span className="inline-block rounded-full bg-lime px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink sm:text-[12px]">
+        <span className={ETIQUETA}>
           {bloque.etiqueta}
         </span>
         <h3 className="mt-3 text-balance text-[clamp(22px,6.4vw,26px)] font-bold leading-[1.1] text-ink md:text-[30px]">
@@ -130,6 +155,9 @@ function Bloque({ bloque, invertido }) {
         )}
       </div>
       <div data-reveal className={invertido ? "md:order-1" : ""}>
+        {escena ? (
+          <EscenaMarco escena={escena} titulo={bloque.alt} />
+        ) : (
         <div className="group mx-auto w-full max-w-lg overflow-hidden rounded-[2rem] bg-white shadow-xl shadow-ink/10 ring-1 ring-ink/10">
           {foto ? (
             <img
@@ -156,6 +184,7 @@ function Bloque({ bloque, invertido }) {
             </div>
           )}
         </div>
+        )}
       </div>
     </div>
   )
@@ -195,7 +224,7 @@ export default function BasicoIncluye() {
         <div className="text-center">
           <span
             data-reveal
-            className="inline-block rounded-full bg-lime px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink sm:px-3 sm:text-[12.5px] sm:tracking-[0.09em]"
+            className={ETIQUETA}
           >
             Qué incluye
           </span>

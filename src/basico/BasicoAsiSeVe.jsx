@@ -2,6 +2,11 @@ import { useRef, useState } from "react"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faImage } from "@fortawesome/free-solid-svg-icons"
 import { useReveal } from "../lib/motion"
+import { ETIQUETA } from "../lib/pastillas"
+import escritorioVideo from "../assets/basico/tienda-escritorio.mp4"
+import escritorioPoster from "../assets/basico/tienda-escritorio-poster.webp"
+import movilVideo from "../assets/basico/tienda-movil.mp4"
+import movilPoster from "../assets/basico/tienda-movil-poster.webp"
 
 // Capturas: guardalas en src/assets/basico/ como panel-1, panel-2... (el panel) y tienda-1, tienda-2...
 // (cómo queda la tienda). Se muestran solo las que existan, en el orden del número.
@@ -39,6 +44,51 @@ const pantallasTienda = [
   { n: 3, label: "Carrito", alt: "La tienda terminada: carrito de compras" },
 ]
 
+// "Tu tienda": en vez de capturas fijas, la tienda de ejemplo (Tommy Tommy) se recorre sola. Cada dispositivo muestra su versión
+// y la llena: en escritorio, la versión web ocupa toda la ventana; en el celular, la versión móvil ocupa todo el celular.
+// Con "reducir movimiento" quedan las imágenes quietas.
+const quieto = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+function Pantalla({ video, poster, className }) {
+  return quieto ? (
+    <img src={poster} alt="" className={className} />
+  ) : (
+    <video src={video} poster={poster} autoPlay muted loop playsInline preload="metadata" aria-hidden="true" className={className} />
+  )
+}
+
+// Va dentro de la ventana del navegador (desde md): la versión web llena la ventana.
+function TiendaEscritorio() {
+  return (
+    <div role="img" aria-label="La tienda terminada, que se recorre sola en escritorio">
+      <Pantalla video={escritorioVideo} poster={escritorioPoster} className="block aspect-[2.13/1] w-full object-cover object-top" />
+    </div>
+  )
+}
+
+// En el celular no hay ventana de navegador: va solo el celular, con la versión móvil llenándolo.
+function TiendaCelular() {
+  return (
+    <div role="img" aria-label="La tienda terminada, que se recorre sola en el celular" className="mx-auto w-[min(78vw,19rem)] rounded-[2.4rem] bg-[#3B3262] p-2 shadow-xl shadow-ink/15">
+      <div className="overflow-hidden rounded-[2rem] bg-white">
+        <Pantalla video={movilVideo} poster={movilPoster} className="block aspect-[374/792] w-full object-cover object-top" />
+      </div>
+    </div>
+  )
+}
+
+// Panel en el celular: va dentro de un celular (no hay ventana de navegador). Todavía no están las capturas del panel de Tommy Tommy.
+function PanelCelular() {
+  return (
+    <div role="img" aria-label="El panel en el celular" className="mx-auto w-[min(78vw,19rem)] rounded-[2.4rem] bg-[#3B3262] p-2 shadow-xl shadow-ink/15">
+      <div className="flex aspect-[374/792] flex-col items-center justify-center gap-3 overflow-hidden rounded-[2rem] bg-primary-tint p-6 text-center text-primary">
+        <FontAwesomeIcon icon={faImage} className="h-10 w-10" aria-hidden="true" />
+        <p className="text-sm font-bold uppercase tracking-[0.09em]">Panel en el celular</p>
+      </div>
+    </div>
+  )
+}
+
 const pestanas = [
   {
     id: "panel",
@@ -52,7 +102,7 @@ const pestanas = [
   {
     id: "tienda",
     nombre: "Tu tienda",
-    barra: "tutienda.lemora.lat",
+    barra: "tommytommy.lemora.lat",
     pantallas: pantallasTienda
       .map((p) => ({ ...p, foto: fotoDe(fotosTienda, "tienda", p.n) }))
       .filter((p) => p.foto),
@@ -77,7 +127,7 @@ export default function BasicoAsiSeVe() {
         <div className="text-center">
           <span
             data-reveal
-            className="inline-block rounded-full bg-lime px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink sm:px-3 sm:text-[12.5px] sm:tracking-[0.09em]"
+            className={ETIQUETA}
           >
             Así se ve
           </span>
@@ -98,7 +148,7 @@ export default function BasicoAsiSeVe() {
             aria-label="Qué querés ver"
             className="inline-flex rounded-full bg-white p-1 ring-1 ring-ink/10"
           >
-            {pestanas.map((p) => (
+            {pestanas.map((p, i) => (
               <button
                 key={p.id}
                 type="button"
@@ -108,7 +158,7 @@ export default function BasicoAsiSeVe() {
                 aria-controls="asi-se-ve-ventana"
                 onClick={() => setActiva(p.id)}
                 className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors duration-300 focus-ring motion-reduce:transition-none ${
-                  activa === p.id ? "bg-ink text-white" : "text-ink-soft hover:text-ink"
+                  activa === p.id ? (i === 0 ? "bg-ink text-white" : "bg-primary text-white") : "text-ink-soft hover:text-ink"
                 }`}
               >
                 {p.nombre}
@@ -122,7 +172,7 @@ export default function BasicoAsiSeVe() {
           id="asi-se-ve-ventana"
           role="tabpanel"
           aria-labelledby={`asi-se-ve-${activa}`}
-          className="mx-auto mt-6 max-w-5xl overflow-hidden rounded-2xl bg-white shadow-xl shadow-ink/10 ring-1 ring-ink/10"
+          className={`relative mx-auto mt-6 max-w-5xl overflow-hidden rounded-2xl bg-white shadow-xl shadow-ink/10 ring-1 ring-ink/10 max-md:hidden`}
         >
           {/* Barra de la ventana */}
           <div className="flex items-center gap-3 border-b border-ink/10 bg-primary-tint/60 px-4 py-3">
@@ -138,7 +188,9 @@ export default function BasicoAsiSeVe() {
           </div>
 
           {/* Las capturas se apilan en la misma celda y se funden entre sí */}
-          {pestana.pantallas.length > 0 ? (
+          {!esPanel ? (
+            <TiendaEscritorio />
+          ) : pestana.pantallas.length > 0 ? (
             <div className="relative" style={{ containerType: "inline-size" }}>
               <div className="grid bg-white">
                 {pestana.pantallas.map((p, i) => (
@@ -188,6 +240,10 @@ export default function BasicoAsiSeVe() {
           )}
         </div>
 
+        <div data-reveal className="mt-6 md:hidden">
+          {esPanel ? <PanelCelular /> : <TiendaCelular />}
+        </div>
+
         {esPanel && pestana.pantallas.length > 1 && (
           <p data-reveal className="mt-4 hidden text-center text-sm font-semibold text-ink-muted md:block">
             Hacé clic en el menú para explorar el panel.
@@ -198,7 +254,7 @@ export default function BasicoAsiSeVe() {
         {pestana.pantallas.length > 1 && (
           <div
             data-reveal
-            className={`mt-5 flex flex-wrap justify-center gap-2 ${esPanel ? "md:hidden" : ""}`}
+            className={`mt-5 flex flex-wrap justify-center gap-2 ${esPanel ? "hidden" : ""}`}
           >
             {pestana.pantallas.map((p, i) => (
               <button

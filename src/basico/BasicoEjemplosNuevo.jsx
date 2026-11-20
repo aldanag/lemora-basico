@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useReveal } from "../lib/motion"
 import tommyEscritorio from "../assets/basico/scroll-1-desktop.webp"
 import tommyMovil from "../assets/basico/scroll-1-movil.webp"
@@ -6,9 +6,11 @@ import amberEscritorio from "../assets/basico/scroll-2-desktop.webp"
 import amberMovil from "../assets/basico/scroll-2-movil.webp"
 import belovaEscritorio from "../assets/basico/scroll-3-desktop.webp"
 import belovaMovil from "../assets/basico/scroll-3-movil.webp"
+import { ETIQUETA } from "../lib/pastillas"
 
 // Ejemplos con el formato nuevo: un cuadrado oscuro por tienda, con la pantalla de escritorio y el celular.
-// Las capturas son largas (toda la portada de cada tienda) y se deslizan muy despacio dentro de su pantalla.
+// Las capturas son largas (toda la portada de cada tienda) y se deslizan muy despacio dentro de su pantalla, todas juntas:
+// las tres tiendas, en escritorio y en celular, arrancan a la vez y tardan lo mismo (36 s, ida y vuelta).
 // Para volver a sacarlas: scroll-N-desktop.webp y scroll-N-movil.webp en src/assets/basico.
 const tiendas = [
   {
@@ -40,10 +42,8 @@ const Candado = () => (
   </svg>
 )
 
-function Tarjeta({ t, i }) {
+function Tarjeta({ t }) {
   const dominio = new URL(t.href).hostname
-  // Cada tienda arranca en un punto distinto del recorrido para que no se muevan todas igual.
-  const desfase = `${-i * 7}s`
   return (
     <article data-reveal>
       <a
@@ -77,7 +77,7 @@ function Tarjeta({ t, i }) {
                 loading="lazy"
                 draggable="false"
                 className="scroll-suave block w-full"
-                style={{ "--hasta": "-52%", "--dur": "34s", animationDelay: desfase }}
+                style={{ "--hasta": "-52%", "--dur": "36s" }}
               />
             </div>
           </div>
@@ -115,7 +115,7 @@ function Tarjeta({ t, i }) {
                 loading="lazy"
                 draggable="false"
                 className="scroll-suave block w-full"
-                style={{ "--hasta": "-66%", "--dur": "40s", animationDelay: desfase }}
+                style={{ "--hasta": "-66%", "--dur": "36s" }}
               />
             </div>
           </div>
@@ -125,7 +125,7 @@ function Tarjeta({ t, i }) {
           {t.rubro}
         </span>
 
-        <span className="absolute right-[9.5%] top-[7cqw] rounded-full bg-lime px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink sm:px-3 sm:text-[12px]">
+        <span className={`absolute right-[9.5%] top-[7cqw] ${ETIQUETA}`}>
           Plan Básico
         </span>
 
@@ -150,13 +150,27 @@ export default function BasicoEjemplosNuevo() {
   const root = useRef(null)
   useReveal(root)
 
+  // Las pantallas solo se deslizan mientras la grilla está a la vista, y arrancan las seis a la vez (misma fase).
+  const grilla = useRef(null)
+  const [viva, setViva] = useState(false)
+  useEffect(() => {
+    const el = grilla.current
+    if (!el || !("IntersectionObserver" in window)) {
+      setViva(true)
+      return undefined
+    }
+    const io = new IntersectionObserver(([e]) => setViva(e.isIntersecting), { threshold: 0.1 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
+
   return (
     <section id="ejemplos-nuevo" ref={root} className="bg-primary-tint py-16">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="text-center">
           <span
             data-reveal
-            className="inline-block rounded-full bg-lime px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink sm:px-3 sm:text-[12.5px] sm:tracking-[0.09em]"
+            className={ETIQUETA}
           >
             Ejemplos por casos
           </span>
@@ -171,9 +185,9 @@ export default function BasicoEjemplosNuevo() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-3">
-          {tiendas.map((t, i) => (
-            <Tarjeta key={t.nombre} t={t} i={i} />
+        <div ref={grilla} className={`mt-10 grid gap-5 md:grid-cols-3 ${viva ? "ejemplos-vivos" : ""}`}>
+          {tiendas.map((t) => (
+            <Tarjeta key={t.nombre} t={t} />
           ))}
         </div>
       </div>

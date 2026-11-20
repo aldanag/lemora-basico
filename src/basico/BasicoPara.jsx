@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faBagShopping, faCalendarCheck } from "@fortawesome/free-solid-svg-icons"
 import { useReveal } from "../lib/motion"
 import Tick from "../components/Tick"
+import { ETIQUETA } from "../lib/pastillas"
 
 const tipos = [
   {
@@ -31,7 +32,7 @@ export default function BasicoPara() {
         <div className="text-center">
           <span
             data-reveal
-            className="inline-block rounded-full bg-lime px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink sm:px-3 sm:text-[12.5px] sm:tracking-[0.09em]"
+            className={ETIQUETA}
           >
             Para vender de todo
           </span>

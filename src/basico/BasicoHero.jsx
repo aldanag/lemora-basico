@@ -7,6 +7,7 @@ import { WHATSAPP_TRIAL_LINK } from "../lib/planes"
 import hombre900 from "../assets/hero-hombre-900.webp"
 import hombre1468 from "../assets/hero-hombre-1468.webp"
 import producto from "../assets/producto-tarjeta.webp"
+import { ETIQUETA } from "../lib/pastillas"
 
 export default function BasicoHero() {
   const root = useRef(null)
@@ -36,7 +37,7 @@ export default function BasicoHero() {
           <div className="text-center md:text-left">
             <span
               data-reveal
-              className="inline-block rounded-full bg-lime px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink sm:px-3 sm:text-[12.5px] sm:tracking-[0.09em]"
+              className={ETIQUETA}
             >
               Plan Básico
             </span>
@@ -67,7 +68,7 @@ export default function BasicoHero() {
               </Button>
               <Button
                 href="#incluye"
-                variant="light"
+                variant="tinted"
                 size="lg"
                 className="w-full max-w-xs sm:w-56 lg:w-auto lg:max-w-none lg:flex-1 lg:px-4"
               >
