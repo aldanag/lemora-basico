@@ -112,8 +112,8 @@ body {
   }
 }
 @media (prefers-reduced-motion: no-preference) {
-  /* Solo corre con la grilla a la vista (.ejemplos-vivos) y se frena al pasar el mouse o al mantener apretado. */
-  .ejemplos-vivos .scroll-suave {
+  /* Solo corre con la tarjeta a la vista (.tarjeta-viva) y se frena al pasar el mouse o al mantener apretado. */
+  .tarjeta-viva .scroll-suave {
     animation: scroll-suave var(--dur, 30s) ease-in-out infinite alternate;
     will-change: transform;
   }

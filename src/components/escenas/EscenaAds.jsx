@@ -2,7 +2,7 @@ import banner from "../../assets/escenas/carrusel-lentes-2.webp"
 import lente1 from "../../assets/escenas/respaldo-lente-1.webp"
 import lente2 from "../../assets/escenas/respaldo-lente-2.webp"
 import lente3 from "../../assets/escenas/respaldo-lente-3.webp"
-import { abs, AvisoOscuro, IconoCarrito, Pegatina, raiz, u } from "./utiles"
+import { abs, AvisoOscuro, IconoCarrito, raiz, u } from "./utiles"
 
 // Escena "Lemora Ads": la franja promocional que corre arriba de la tienda. En el plan Básico lleva el aviso de Lemora; con Premium
 // se reemplaza por los mensajes y el color de la tienda (el ejemplo es el de una tienda Premium real: "Precios mayoristas · Envíos a
@@ -92,10 +92,6 @@ export default function EscenaAds({ activa = false }) {
         Plan Premium
       </span>
 
-      <Pegatina className="ca-sticker" xd={738} y={30} giro={6}>
-        <span style={{ fontSize: u(36), fontWeight: 800, lineHeight: 1.1 }}>Lemora Ads</span>
-        <span style={{ fontSize: u(14), fontWeight: 500, letterSpacing: "0.06em", opacity: 0.85, marginTop: u(4) }}>BARRA PROMOCIONAL</span>
-      </Pegatina>
       <AvisoOscuro className="ca-aviso" x={40} y={620} h={66} texto="Con Premium la personalizás" />
     </div>
   )

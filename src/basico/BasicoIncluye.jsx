@@ -108,12 +108,12 @@ const bloques = [
   },
   {
     n: 9,
-    etiqueta: "Lo que tiene el Básico",
-    title: "Una franja de Lemora corre en tu tienda.",
-    body: "El plan Básico incluye un anuncio de Lemora. Podés quitarlo con el plan Premium e incluso personalizarlo con tu propio contenido para tu tienda.",
+    etiqueta: "Cuando crezcas",
+    title: "Tu barra de promos, con tus propios mensajes en Premium.",
+    body: "En Básico la barra de arriba muestra un aviso de Lemora. Cuando quieras que sea toda tuya, con envíos, ofertas y tus propias frases, pasás a Premium.",
     incluye: ["Lemora Ads en la barra promocional"],
-    sugerencia: "La barra promocional con el aviso de Lemora",
-    alt: "Franja con el aviso de Lemora corriendo arriba de una tienda",
+    sugerencia: "La barra promocional con el aviso de Lemora y con mensajes propios",
+    alt: "Barra promocional de una tienda: el aviso de Lemora en el plan Básico y los mensajes propios con Premium",
   },
 ]
 

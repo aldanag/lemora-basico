@@ -44,14 +44,30 @@ const Candado = () => (
 
 function Tarjeta({ t }) {
   const dominio = new URL(t.href).hostname
+  // Cada tarjeta arranca su scroll desde arriba cuando entra en pantalla (y se reinicia si sale): así nunca se ve una tarjeta
+  // "empezada a la mitad". Las tarjetas que se ven juntas (escritorio) arrancan a la vez; el escritorio y el celular de una
+  // misma tarjeta también, porque comparten el mismo inicio y la misma duración.
+  const enlace = useRef(null)
+  const [viva, setViva] = useState(false)
+  useEffect(() => {
+    const el = enlace.current
+    if (!el || !("IntersectionObserver" in window)) {
+      setViva(true)
+      return undefined
+    }
+    const io = new IntersectionObserver(([e]) => setViva(e.isIntersecting), { threshold: 0.35 })
+    io.observe(el)
+    return () => io.disconnect()
+  }, [])
   return (
     <article data-reveal>
       <a
+        ref={enlace}
         href={t.href}
         target="_blank"
         rel="noopener noreferrer"
         aria-label={`Ver la tienda ${t.nombre}, ${t.rubro.toLowerCase()}`}
-        className="group relative block aspect-[100/92] w-full cursor-pointer overflow-hidden rounded-[2rem] bg-ink focus-ring [container-type:inline-size]"
+        className={`group relative block aspect-[100/92] w-full cursor-pointer overflow-hidden rounded-[2rem] bg-ink focus-ring [container-type:inline-size] ${viva ? "tarjeta-viva" : ""}`}
       >
         {/* Escritorio, con la barra del navegador y la dirección de la tienda */}
         <div className="absolute left-[9.5%] top-[19.5cqw] aspect-[16/10] w-[81%] overflow-hidden rounded-2xl bg-white ring-1 ring-white/20 [container-type:inline-size]">
@@ -150,20 +166,6 @@ export default function BasicoEjemplosNuevo() {
   const root = useRef(null)
   useReveal(root)
 
-  // Las pantallas solo se deslizan mientras la grilla está a la vista, y arrancan las seis a la vez (misma fase).
-  const grilla = useRef(null)
-  const [viva, setViva] = useState(false)
-  useEffect(() => {
-    const el = grilla.current
-    if (!el || !("IntersectionObserver" in window)) {
-      setViva(true)
-      return undefined
-    }
-    const io = new IntersectionObserver(([e]) => setViva(e.isIntersecting), { threshold: 0.1 })
-    io.observe(el)
-    return () => io.disconnect()
-  }, [])
-
   return (
     <section id="ejemplos-nuevo" ref={root} className="bg-primary-tint py-16">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
@@ -185,7 +187,7 @@ export default function BasicoEjemplosNuevo() {
           </p>
         </div>
 
-        <div ref={grilla} className={`mt-10 grid gap-5 md:grid-cols-3 ${viva ? "ejemplos-vivos" : ""}`}>
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {tiendas.map((t) => (
             <Tarjeta key={t.nombre} t={t} />
           ))}
