@@ -4,6 +4,9 @@
 // cuando lemora.lat sirva la landing.
 export const LANDING_PLANES = "https://landing-lemora.vercel.app/#planes"
 
+// Landing del plan Premium (el sitio de `web-premium`, que se publica aparte). TODO: cambiar por el dominio definitivo.
+export const PREMIUM_LANDING_LINK = "https://lemora-premium.vercel.app"
+
 export const WHATSAPP_TRIAL_LINK =
   "https://wa.me/543515957014?text=Hola,%20quiero%20probar%20Lemora%20gratis"
 

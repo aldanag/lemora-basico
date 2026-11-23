@@ -1,8 +1,9 @@
 import { useRef } from "react"
 import { useReveal } from "../lib/motion"
 import Button from "../components/Button"
+import LinkTexto from "../components/LinkTexto"
 import Tick from "../components/Tick"
-import { LANDING_PLANES, peso, plans } from "../lib/planes"
+import { LANDING_PLANES, PREMIUM_LANDING_LINK, peso, plans } from "../lib/planes"
 import { ETIQUETA } from "../lib/pastillas"
 
 // Las listas salen de los mismos datos que las tarjetas de planes, así no se desfasan.
@@ -71,6 +72,9 @@ export default function BasicoComparar() {
                 </li>
               ))}
             </ul>
+            <LinkTexto suelto href={PREMIUM_LANDING_LINK} external className="mt-2 text-sm">
+              Ver todo lo que incluye el plan Premium
+            </LinkTexto>
           </div>
         </div>
 

@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faImage } from "@fortawesome/free-solid-svg-icons"
 import { useReveal } from "../lib/motion"
 import Button from "../components/Button"
+import LinkTexto from "../components/LinkTexto"
+import { PREMIUM_LANDING_LINK } from "../lib/planes"
 import Tick from "../components/Tick"
 import { WHATSAPP_TRIAL_LINK } from "../lib/planes"
 import { ETIQUETA } from "../lib/pastillas"
@@ -112,6 +114,7 @@ const bloques = [
     title: "Tu barra de promos, con tus propios mensajes en Premium.",
     body: "En Básico la barra de arriba muestra un aviso de Lemora. Cuando quieras que sea toda tuya, con envíos, ofertas y tus propias frases, pasás a Premium.",
     incluye: ["Lemora Ads en la barra promocional"],
+    link: { texto: "Ver todo lo que incluye el plan Premium", href: PREMIUM_LANDING_LINK },
     sugerencia: "La barra promocional con el aviso de Lemora y con mensajes propios",
     alt: "Barra promocional de una tienda: el aviso de Lemora en el plan Básico y los mensajes propios con Premium",
   },
@@ -152,6 +155,11 @@ function Bloque({ bloque, invertido }) {
               </li>
             ))}
           </ul>
+        )}
+        {bloque.link && (
+          <LinkTexto suelto href={bloque.link.href} external className="mt-2">
+            {bloque.link.texto}
+          </LinkTexto>
         )}
       </div>
       <div data-reveal className={invertido ? "md:order-1" : ""}>
