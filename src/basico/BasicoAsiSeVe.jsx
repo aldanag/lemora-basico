@@ -143,7 +143,7 @@ export default function BasicoAsiSeVe() {
           </p>
         </div>
 
-        <div data-reveal className="mt-8 flex justify-center">
+        <div className="sticky top-[4.5rem] z-30 mt-8 flex justify-center bg-mist/90 py-2 backdrop-blur md:static md:bg-transparent md:py-0 md:backdrop-blur-none">
           <div
             role="tablist"
             aria-label="Qué querés ver"
