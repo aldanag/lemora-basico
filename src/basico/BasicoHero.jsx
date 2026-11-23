@@ -33,7 +33,7 @@ export default function BasicoHero() {
   return (
     <section id="top" ref={root} className="mx-auto max-w-[112rem] px-3 pt-[4.5rem] md:px-5 md:pt-24">
       <div className="relative overflow-hidden rounded-[2rem] bg-lilac md:rounded-[2.5rem]">
-        <div className="mx-auto grid max-w-[88rem] items-center gap-8 px-5 py-10 lg:min-h-[31rem] 2xl:min-h-[40rem] md:grid-cols-[1.05fr_1fr] md:gap-4 md:px-10 md:py-14 lg:px-14">
+        <div className="mx-auto grid max-w-[88rem] items-center gap-8 px-5 py-10 lg:min-h-[31rem] md:grid-cols-[1.05fr_1fr] md:gap-4 md:px-10 md:py-14 lg:px-14">
           <div className="text-center md:text-left">
             <span
               data-reveal
