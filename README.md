@@ -1,6 +1,6 @@
 # Lemora · plan Básico
 
-Sitio del plan Básico de Lemora: tu tienda online completa desde $9.000 al mes, con los pedidos directo en WhatsApp. Es un sitio de una sola página que vive en la raíz (`/`); sale de la misma base que la landing, pero se mantiene por separado.
+Sitio del plan Básico de Lemora: tu tienda online completa desde $12.490 al mes, con los pedidos directo en WhatsApp. Es un sitio de una sola página que vive en la raíz (`/`); sale de la misma base que la landing, pero se mantiene por separado.
 
 Hecho con React 19, Vite, Tailwind CSS v4 y GSAP.
 
