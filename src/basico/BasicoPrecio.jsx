@@ -6,8 +6,7 @@ import { anualLink, BASICO_CHECKOUT_LINK, peso, plans, WHATSAPP_TRIAL_LINK } fro
 import { INSIGNIA } from "../lib/pastillas"
 
 const basico = plans.find((p) => p.name === "Básico")
-// Las funciones que más pesan en la decisión van en negrita.
-const destacadas = ["Cargá productos o servicios ilimitados"]
+const destacadas = [] // sin negritas: todas las funciones del plan se leen igual
 
 const opciones = [
   { id: false, label: "Mensual", on: "bg-ink text-white" },
@@ -38,10 +37,10 @@ export default function BasicoPrecio() {
 
         <div
           data-reveal
-          className="mx-auto mt-8 grid max-w-4xl gap-6 rounded-3xl bg-white p-5 text-ink shadow-xl shadow-ink/10 sm:p-7 md:grid-cols-[1.15fr_1fr]"
+          className="mx-auto mt-8 grid max-w-4xl gap-6 rounded-3xl bg-white p-5 text-ink shadow-xl shadow-ink/10 sm:p-7 md:grid-cols-[0.8fr_1fr]"
         >
-          <div className="flex flex-col">
-            <h3 className="text-xl font-extrabold">Plan Básico</h3>
+          <div className="flex flex-col items-center text-center">
+            <h3 className="text-lg font-extrabold">Plan Básico</h3>
 
             <div className="mt-4">
                 <div
@@ -55,7 +54,7 @@ export default function BasicoPrecio() {
                       type="button"
                       aria-pressed={anual === op.id}
                       onClick={() => setAnual(op.id)}
-                      className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300 focus-ring-light motion-reduce:transition-none ${
+                      className={`flex items-center gap-2 rounded-full px-3.5 py-1.5 text-[13px] font-semibold transition-colors duration-300 focus-ring-light motion-reduce:transition-none ${
                         anual === op.id ? op.on : "text-ink-soft hover:text-ink"
                       }`}
                     >
@@ -70,10 +69,10 @@ export default function BasicoPrecio() {
                 </div>
             </div>
 
-            <div key={`precio-${anual}`} className="cambio-precio mt-5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
-              <p className="text-[44px] font-extrabold leading-none">
+            <div key={`precio-${anual}`} className="cambio-precio mt-5 flex flex-wrap items-baseline justify-center gap-x-2 gap-y-1">
+              <p className="text-[36px] font-extrabold leading-none">
                 {peso(anual ? basico.anual / 12 : basico.mensual)}
-                <span className="text-lg font-bold text-ink-soft">/mes</span>
+                <span className="text-base font-bold text-ink-soft">/mes</span>
               </p>
               {anual && (
                 <p className="text-sm font-semibold text-ink-muted line-through decoration-2">
@@ -87,21 +86,21 @@ export default function BasicoPrecio() {
                 : "Probá 1 mes gratis"}
             </p>
 
-            <p className="mt-4 text-sm font-semibold text-ink-soft">
+            <p className="mt-4 text-balance text-sm font-semibold text-ink-soft">
               Sin compromiso de adquirir nuestro plan, no te pedimos tarjeta ni ningún tipo de pago.
             </p>
 
-            <div className="mt-6 flex flex-col gap-3 md:mt-auto">
+            <div className="mt-6 flex w-full flex-col gap-3 md:mt-auto">
               <Button href={WHATSAPP_TRIAL_LINK} external block>
                 Probar gratis 1 mes
               </Button>
-              <p className="text-center text-sm text-ink-soft">
+              <p className="text-balance text-center text-sm text-ink-soft">
                 ¿Ya sabés que lo querés?{" "}
                 <a
                   href={anual ? anualLink("Básico") : BASICO_CHECKOUT_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded font-semibold text-primary underline underline-offset-4 focus-ring"
+                  className="whitespace-nowrap rounded font-semibold text-primary underline underline-offset-4 focus-ring"
                 >
                   {anual ? "Contratar plan anual" : "Suscribirme ahora"}
                 </a>
@@ -115,7 +114,7 @@ export default function BasicoPrecio() {
               {basico.features.map((f) => (
                 <li
                   key={f}
-                  className={`flex items-center gap-2.5 text-sm ${
+                  className={`flex items-center gap-2.5 text-pretty text-sm ${
                     destacadas.includes(f) ? "font-bold" : ""
                   }`}
                 >
