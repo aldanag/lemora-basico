@@ -164,8 +164,6 @@ body {
 /* ===== ESCENA GALERÍA (landing, "Galería de imágenes"): bucle de 10 s mientras está a la vista (.eg-activa). Reposo = foto 1 y su miniatura marcada. =====
    Las fotos pasan solas; la miniatura activa se marca con el borde violeta y un toque (tap) anticipa cada cambio. */
 .eg-toque { position: absolute; width: calc(var(--u) * 64); height: calc(var(--u) * 64); border-radius: 9999px; background: rgba(108, 79, 212, 0.35); border: calc(var(--u) * 3) solid rgba(108, 79, 212, 0.75); opacity: 0; pointer-events: none; }
-@media (prefers-reduced-motion: no-preference) {
-}
 
 /* ===== ESCENA DESCUENTOS (landing, "Automatizá descuentos"): bucle de 10 s mientras está a la vista (.ed-activa). Reposo = cupón ya aplicado. =====
    Se reinicia al 9 %: un toque en el campo, se escribe TIKTOK10, un toque en "Aplicar", aparece el aviso, el cupón queda en el
@@ -240,8 +238,6 @@ body {
 :root[data-motion="on"] .ed-activa .eg-anillo::after { animation: eg-anillo var(--dur) ease-out calc(var(--ini) + 0.16s) infinite; }
 
 /* Galería (rehecha): la foto se desplaza de verdad con cada toque en la flecha derecha, y la flecha se aprieta. */
-@media (prefers-reduced-motion: no-preference) {
-}
 
 /* ===== ESCENA PEDIDO (landing, "Pedido directo"): bucle de 10 s mientras está a la vista (.ep-activa). Reposo = pedido ya enviado. =====
    Toque en "Finalizar Compra", se dibuja la línea hacia WhatsApp, aparece el sticker, llega el mensaje armado (automático) y "Pedido recibido". */
@@ -382,8 +378,6 @@ body {
 :root[data-motion="on"] .ev-activa .eg-anillo::before { animation: eg-anillo var(--dur) ease-out var(--ini) infinite; }
 :root[data-motion="on"] .ev-activa .eg-anillo::after { animation: eg-anillo var(--dur) ease-out calc(var(--ini) + 0.16s) infinite; }
 
-@media (prefers-reduced-motion: no-preference) {
-}
 
 /* ===== PREGUNTAS (3 preguntas, bucle 12 s): cada toque abre una y cierra la anterior a la vez; la tarjeta blanca crece y se achica. Reposo = la primera abierta. ===== */
 @keyframes eq-r0 { 0%, 8% { grid-template-rows: 1fr; } 11%, 86% { grid-template-rows: 0fr; } 89%, 100% { grid-template-rows: 1fr; } }
@@ -572,16 +566,12 @@ body {
 @keyframes cf-sin { 0%, 8% { opacity: 0; } 10%, 13.5% { opacity: 1; } 14.5%, 100% { opacity: 0; } }
 @keyframes cf-logo-caja { 0%, 8% { opacity: 1; } 10%, 14% { opacity: 0; } 15.5%, 100% { opacity: 1; } }
 @keyframes cf-prev-sin { 0%, 8% { opacity: 0; } 10%, 14% { opacity: 1; } 15.5%, 100% { opacity: 0; } }
-@keyframes cf-prev-logo { 0%, 8% { opacity: 1; transform: scale(1.4); } 10%, 14% { opacity: 0; transform: scale(0.85); } 15.5%, 46% { opacity: 1; transform: scale(0.85); } 50%, 100% { opacity: 1; transform: scale(1.4); } }
 @keyframes cf-col { 0%, 8% { transform: translateX(calc(var(--u) * 56)); } 10%, 28% { transform: none; } 32%, 100% { transform: translateX(calc(var(--u) * 56)); } }
-@keyframes cf-sel { 0%, 8% { transform: translateX(calc(var(--u) * 340)); } 10%, 46% { transform: none; } 50%, 100% { transform: translateX(calc(var(--u) * 340)); } }
 @keyframes cf-c-bg { 0%, 8% { background-color: #E94B8B; } 10%, 31% { background-color: #6C4FD4; } 36%, 100% { background-color: #E94B8B; } }
 @keyframes cf-c-tx { 0%, 8% { color: #E94B8B; } 10%, 31% { color: #6C4FD4; } 36%, 100% { color: #E94B8B; } }
 @keyframes cf-subir { 0%, 10% { transform: none; } 11.6% { transform: scale(0.94); } 13.5%, 100% { transform: none; } }
-@keyframes cf-aviso { 0%, 8% { opacity: 1; transform: none; } 10%, 56% { opacity: 0; transform: translateY(14px) scale(0.95); } 61%, 100% { opacity: 1; transform: none; } }
 @keyframes cf-ta { 0%, 11% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 12.2% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.8); } 13.2% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); } 15%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); } }
 @keyframes cf-tb { 0%, 28% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 29.2% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.8); } 30.2% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); } 32%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); } }
-@keyframes cf-tc { 0%, 46% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 47.2% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.8); } 48.2% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); } 50%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); } }
 @keyframes tp-d0 { 0%, 8% { opacity: 0; } 10%, 12.4% { opacity: 1; } 13.4%, 100% { opacity: 0; } }
 @keyframes tp-d2 { 0%, 8% { opacity: 1; } 10%, 12.4% { opacity: 0; } 13.4%, 100% { opacity: 1; } }
 @keyframes tp-h { 0%, 8% { opacity: 1; } 10%, 26.4% { opacity: 0; } 27.4%, 100% { opacity: 1; } }
@@ -597,7 +587,6 @@ body {
   .cf-activa .cf-prev-sin { animation: cf-prev-sin 12s linear infinite; }
   .cf-activa .cf-prev-logo { animation: cf-prev-logo 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
   .cf-activa .cf-col { animation: cf-col 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-  .cf-activa .cf-sel { animation: cf-sel 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
   .cf-activa .cf-c-bg { animation: cf-c-bg 12s ease-in-out infinite; }
   .cf-activa .cf-c-tx { animation: cf-c-tx 12s ease-in-out infinite; }
   .cf-activa .cf-subir { animation: cf-subir 12s ease-in-out infinite; }
@@ -624,7 +613,6 @@ body {
 :root[data-motion="on"] .cf-activa .cf-prev-sin { animation: cf-prev-sin 12s linear infinite; }
 :root[data-motion="on"] .cf-activa .cf-prev-logo { animation: cf-prev-logo 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 :root[data-motion="on"] .cf-activa .cf-col { animation: cf-col 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-:root[data-motion="on"] .cf-activa .cf-sel { animation: cf-sel 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 :root[data-motion="on"] .cf-activa .cf-c-bg { animation: cf-c-bg 12s ease-in-out infinite; }
 :root[data-motion="on"] .cf-activa .cf-c-tx { animation: cf-c-tx 12s ease-in-out infinite; }
 :root[data-motion="on"] .cf-activa .cf-subir { animation: cf-subir 12s ease-in-out infinite; }
@@ -700,11 +688,43 @@ body {
 :root[data-motion="on"] .carru-activa .carru-flecha { animation: carru-flecha 10s ease-in-out infinite; }
 
 /* Encabezado de la tienda de Configurá tu tienda: crece con el logo grande y baja el resto. */
-@keyframes cf-cab { 0%, 8% { transform: none; } 10%, 46% { transform: translateY(calc(var(--u) * -7)); } 50%, 100% { transform: none; } }
-@keyframes cf-abajo { 0%, 8% { transform: none; } 10%, 46% { transform: translateY(calc(var(--u) * -14)); } 50%, 100% { transform: none; } }
+
+/* Configurá tu tienda (cf-), parte 2: estilo de bordes y diseño del carrusel. Reposo = todo configurado. */
+@keyframes cf-tc { 0%, 44% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 45.2% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.8); } 46.2% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); } 48%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); } }
+@keyframes cf-td { 0%, 72% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); } 73.2% { opacity: 0.85; transform: translate(-50%, -50%) scale(0.8); } 74.2% { opacity: 0.6; transform: translate(-50%, -50%) scale(0.95); } 76%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(1.5); } }
+@keyframes cf-prev-logo { 0%, 8% { opacity: 1; } 10%, 14% { opacity: 0; } 15.5%, 100% { opacity: 1; } }
+@keyframes cf-aviso { 0%, 8% { opacity: 1; transform: none; } 10%, 78% { opacity: 0; transform: translateY(14px) scale(0.95); } 83%, 100% { opacity: 1; transform: none; } }
+@keyframes cf-fila-a { 0%, 8% { opacity: 0; } 10%, 55% { opacity: 1; } 59%, 100% { opacity: 0; } }
+@keyframes cf-fila-b { 0%, 8% { opacity: 1; } 10%, 55% { opacity: 0; } 59%, 100% { opacity: 1; } }
+@keyframes cf-sel-a { 0%, 8% { transform: translateX(calc(var(--u) * 198)); } 10%, 44% { transform: none; } 48%, 100% { transform: translateX(calc(var(--u) * 198)); } }
+@keyframes cf-sel-b { 0%, 8% { transform: translateX(calc(var(--u) * 296)); } 10%, 72% { transform: none; } 76%, 100% { transform: translateX(calc(var(--u) * 296)); } }
+@keyframes cf-r-card { 0%, 8% { border-radius: calc(var(--u) * 26); } 10%, 44% { border-radius: calc(var(--u) * 14); } 49%, 100% { border-radius: calc(var(--u) * 26); } }
+@keyframes cf-r-tile { 0%, 8% { border-radius: calc(var(--u) * 18); } 10%, 44% { border-radius: calc(var(--u) * 9); } 49%, 100% { border-radius: calc(var(--u) * 18); } }
+@keyframes cf-r-search { 0%, 8% { border-radius: calc(var(--u) * 15); } 10%, 44% { border-radius: calc(var(--u) * 6); } 49%, 100% { border-radius: calc(var(--u) * 15); } }
+@keyframes cf-slider { 0%, 8% { clip-path: inset(calc(var(--u) * 10) calc(var(--u) * 14) calc(var(--u) * 10) calc(var(--u) * 14) round calc(var(--u) * 18)); } 10%, 72% { clip-path: inset(calc(var(--u) * 0) calc(var(--u) * 0) calc(var(--u) * 0) calc(var(--u) * 0) round calc(var(--u) * 0)); } 78%, 100% { clip-path: inset(calc(var(--u) * 10) calc(var(--u) * 14) calc(var(--u) * 10) calc(var(--u) * 14) round calc(var(--u) * 18)); } }
 @media (prefers-reduced-motion: no-preference) {
-  .cf-activa .cf-cab { animation: cf-cab 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-  .cf-activa .cf-abajo { animation: cf-abajo 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+  .cf-activa .cf-td { animation: cf-td 12s ease-out infinite; }
+  .cf-activa .cf-fila-a { animation: cf-fila-a 12s linear infinite; }
+  .cf-activa .cf-fila-b { animation: cf-fila-b 12s linear infinite; }
+  .cf-activa .cf-sel-a { animation: cf-sel-a 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+  .cf-activa .cf-sel-b { animation: cf-sel-b 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+  .cf-activa .cf-r-card { animation: cf-r-card 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+  .cf-activa .cf-r-tile { animation: cf-r-tile 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+  .cf-activa .cf-r-search { animation: cf-r-search 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+  .cf-activa .cf-slider { animation: cf-slider 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
 }
-:root[data-motion="on"] .cf-activa .cf-cab { animation: cf-cab 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
-:root[data-motion="on"] .cf-activa .cf-abajo { animation: cf-abajo 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+:root[data-motion="on"] .cf-activa .cf-td { animation: cf-td 12s ease-out infinite; }
+:root[data-motion="on"] .cf-activa .cf-fila-a { animation: cf-fila-a 12s linear infinite; }
+:root[data-motion="on"] .cf-activa .cf-fila-b { animation: cf-fila-b 12s linear infinite; }
+:root[data-motion="on"] .cf-activa .cf-sel-a { animation: cf-sel-a 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+:root[data-motion="on"] .cf-activa .cf-sel-b { animation: cf-sel-b 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+:root[data-motion="on"] .cf-activa .cf-r-card { animation: cf-r-card 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+:root[data-motion="on"] .cf-activa .cf-r-tile { animation: cf-r-tile 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+:root[data-motion="on"] .cf-activa .cf-r-search { animation: cf-r-search 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+:root[data-motion="on"] .cf-activa .cf-slider { animation: cf-slider 12s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+/* Cambio de precio (mensual/anual): el número y la línea de abajo aparecen con un fundido corto cuando se cambia el período. */
+@keyframes cambio-precio { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: no-preference) {
+  .cambio-precio { animation: cambio-precio 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+}
