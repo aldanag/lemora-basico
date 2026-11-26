@@ -35,7 +35,7 @@ export default function EscenaContacto({ activa = false }) {
           <path d="M-10 70H270M-10 150H270M70 -10V260M170 -10V260" stroke="#fff" strokeWidth="14" />
           <path d="M-10 210 120 100 270 20" stroke="#F6F3FF" strokeWidth="9" />
         </svg>
-        <svg viewBox="0 0 24 24" style={{ ...abs(104, 74, { width: u(54), height: u(54) }) }} aria-hidden="true">
+        <svg viewBox="0 0 24 24" style={{ ...abs(102, 100, { width: u(54), height: u(54) }) }} aria-hidden="true">
           <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z" fill="#6C4FD4" />
           <circle cx="12" cy="9" r="2.8" fill="#fff" />
         </svg>

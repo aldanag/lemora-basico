@@ -120,8 +120,8 @@ export default function EscenaTurnosPanel({ activa = false }) {
         Confirmar turno
       </BotonTienda>
 
-      <AvisoOscuro className="tp-aviso" x={96} y={222} h={64} texto="Turno reservado" />
-      <Pegatina className="tp-sticker" xd={740} y={546} giro={6}>
+      <AvisoOscuro className="tp-aviso" x={44} y={226} h={64} texto="Turno reservado" />
+      <Pegatina className="tp-sticker" x={44} y={58} giro={-6}>
         <span style={{ fontSize: u(36), fontWeight: 800, lineHeight: 1.1 }}>Tus horarios</span>
         <span style={{ fontSize: u(14), fontWeight: 500, letterSpacing: "0.06em", opacity: 0.85, marginTop: u(4) }}>VOS ELEGÍS CUÁNDO</span>
       </Pegatina>

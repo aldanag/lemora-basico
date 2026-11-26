@@ -18,9 +18,11 @@ import EscenaFavoritos from "../components/escenas/EscenaFavoritos"
 import EscenaContacto from "../components/escenas/EscenaContacto"
 import EscenaPreguntas from "../components/escenas/EscenaPreguntas"
 import EscenaAds from "../components/escenas/EscenaAds"
+import EscenaMetodos from "../components/escenas/EscenaMetodos"
+import EscenaEstadisticas from "../components/escenas/EscenaEstadisticas"
 
 // Imágenes de cada bloque: guardá los archivos en src/assets/basico/ con el nombre
-// bloque-1 a bloque-9 (.webp, .png o .jpg, capturas de cualquier proporción, de 1000 px de ancho
+// bloque-1 a bloque-11 (.webp, .png o .jpg, capturas de cualquier proporción, de 1000 px de ancho
 // o más). La página las toma solas y respeta la proporción de cada una; mientras no estén, se ve
 // un recuadro de ejemplo.
 const fotos = import.meta.glob("../assets/basico/bloque-*.{webp,png,jpg}", {
@@ -51,6 +53,19 @@ const bloques = [
     alt: "Listado de productos y servicios del panel de Lemora, junto a la ficha de un producto en la tienda",
   },
   {
+    n: 3,
+    etiqueta: "Tus turnos",
+    title: "Tus clientes reservan turno en los horarios que vos elegís.",
+    body: "Si tu tienda es de servicios, tus clientes reservan su turno desde la tienda. Gestioná todos tus turnos en tu calendario, desde el panel.",
+    incluye: [
+      "Reserva de turnos para servicios",
+      "Horarios disponibles a tu elección",
+      "Calendario de turnos en tu panel",
+    ],
+    sugerencia: "El calendario del panel con los turnos, y la reserva en la tienda",
+    alt: "Calendario del panel de Lemora con los turnos reservados, junto a la pantalla donde un cliente reserva su turno",
+  },
+  {
     n: 4,
     etiqueta: "Que te vean",
     title: "Destacá tus ofertas y novedades apenas entran.",
@@ -58,6 +73,16 @@ const bloques = [
     incluye: ["Carrusel de hasta 6 slides", "8 banners promocionales"],
     sugerencia: "El carrusel con un banner de oferta arriba de los productos",
     alt: "Carrusel del panel de Lemora, junto a cómo se ven el carrusel y un banner promocional en la tienda",
+  },
+  {
+    n: 10,
+    etiqueta: "Tus cobros",
+    title: "Cobrá por transferencia o en efectivo.",
+    body: "Habilitás desde el panel los medios de pago que querés ofrecer: efectivo y transferencia o WhatsApp, sin comisiones por venta. Si querés cobrar con tarjeta y ofrecer cuotas, Mercado Pago llega con el plan Premium.",
+    incluye: ["Pagos en efectivo y por transferencia"],
+    link: { texto: "Ver Mercado Pago y cuotas en Premium", href: PREMIUM_LANDING_LINK },
+    sugerencia: "El panel con los medios de pago y la tarjeta de Mercado Pago y cuotas de Premium",
+    alt: "Panel de Lemora con los medios de pago de efectivo y transferencia, y la tarjeta de Mercado Pago y cuotas disponible en Premium",
   },
   {
     n: 5,
@@ -78,6 +103,15 @@ const bloques = [
     alt: "Productos de una tienda con el botón de favoritos",
   },
   {
+    n: 11,
+    etiqueta: "Tus números",
+    title: "Mirá cómo viene tu tienda.",
+    body: "Un panel de estadísticas con lo que pasó en tu tienda, para decidir qué cargar y qué promocionar.",
+    incluye: ["Ingresos de los últimos 30 días", "Pedidos por estado", "Productos más vendidos", "Ventas por categoría"],
+    sugerencia: "El panel de estadísticas con ingresos, pedidos por estado y más vendidos",
+    alt: "Panel de estadísticas de Lemora con los ingresos, los pedidos por estado, los productos más vendidos y las ventas por categoría",
+  },
+  {
     n: 8,
     etiqueta: "Menos preguntas",
     title: "Respondé las dudas una sola vez y mostrá que otros ya compraron.",
@@ -96,24 +130,17 @@ const bloques = [
     alt: "Página de contacto de una tienda con formulario, mapa y botón de WhatsApp",
   },
   {
-    n: 3,
-    etiqueta: "Tus turnos",
-    title: "Tus clientes reservan turno en los horarios que vos elegís.",
-    body: "Si tu tienda es de servicios, tus clientes reservan su turno desde la tienda. Gestioná todos tus turnos en tu calendario, desde el panel.",
-    incluye: [
-      "Reserva de turnos para servicios",
-      "Horarios disponibles a tu elección",
-      "Calendario de turnos en tu panel",
-    ],
-    sugerencia: "El calendario del panel con los turnos, y la reserva en la tienda",
-    alt: "Calendario del panel de Lemora con los turnos reservados, junto a la pantalla donde un cliente reserva su turno",
-  },
-  {
     n: 9,
     etiqueta: "Cuando crezcas",
-    title: "Tu barra de promos, con tus propios mensajes en Premium.",
-    body: "En Básico la barra de arriba muestra un aviso de Lemora. Cuando quieras que sea toda tuya, con envíos, ofertas y tus propias frases, pasás a Premium.",
-    incluye: ["Lemora Ads en la barra promocional"],
+    title: "Cuando tu tienda crezca, pasá a Premium.",
+    body: "Sumá lo que necesitás para vender más: cobrá con Mercado Pago y en cuotas, vendé por mayor y por menor, conocé a tus clientes y poné tus propios mensajes en la barra de arriba, sin el aviso de Lemora.",
+    incluye: [
+      "Mercado Pago y venta en cuotas",
+      "Venta mayorista o minorista",
+      "Panel de clientes e inventario",
+      "Marketing y ventana emergente al salir",
+      "Barra promocional con tus mensajes, sin Lemora Ads",
+    ],
     link: { texto: "Ver todo lo que incluye el plan Premium", href: PREMIUM_LANDING_LINK },
     sugerencia: "La barra promocional con el aviso de Lemora y con mensajes propios",
     alt: "Barra promocional de una tienda: el aviso de Lemora en el plan Básico y los mensajes propios con Premium",
@@ -131,6 +158,8 @@ const ESCENAS = {
   7: <EscenaContacto />,
   8: <EscenaPreguntas />,
   9: <EscenaAds />,
+  10: <EscenaMetodos />,
+  11: <EscenaEstadisticas />,
 }
 
 function Bloque({ bloque, invertido }) {
@@ -252,13 +281,13 @@ export default function BasicoIncluye() {
           {bloques.map((b, i) => (
             <div key={b.n} className="contents">
               <Bloque bloque={b} invertido={i % 2 === 1} />
-              {i === 2 && (
+              {i === 3 && (
                 <Cta
                   titulo="Probá todo esto gratis durante 1 mes."
                   texto="No te pedimos tarjeta y no tenés compromiso de adquirir nuestros planes."
                 />
               )}
-              {i === 6 && (
+              {i === 9 && (
                 <Cta
                   titulo="¿Te convence? Empezá hoy."
                   texto="Escribinos por WhatsApp y empezá tu mes de prueba."

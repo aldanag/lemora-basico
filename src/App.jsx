@@ -5,7 +5,7 @@ import Footer from "./components/Footer"
 import BasicoHero from "./basico/BasicoHero"
 import BasicoEjemplosNuevo from "./basico/BasicoEjemplosNuevo"
 import BasicoPara from "./basico/BasicoPara"
-import BasicoAsiSeVe from "./basico/BasicoAsiSeVe"
+// import BasicoAsiSeVe from "./basico/BasicoAsiSeVe" // oculta por ahora
 import BasicoIncluye from "./basico/BasicoIncluye"
 import BasicoPasos from "./basico/BasicoPasos"
 import BasicoPrecio from "./basico/BasicoPrecio"
@@ -78,7 +78,7 @@ export default function BasicoApp() {
         <BasicoHero />
         <BasicoEjemplosNuevo />
         <BasicoPara />
-        <BasicoAsiSeVe />
+        {/* Oculta por ahora (pedido de Aldi). Para volver a mostrarla: <BasicoAsiSeVe /> */}
         <BasicoIncluye />
         <BasicoPrecio />
         <BasicoPasos />
