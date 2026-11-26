@@ -167,7 +167,7 @@ export default function BasicoEjemplosNuevo() {
   useReveal(root)
 
   return (
-    <section id="ejemplos-nuevo" ref={root} className="bg-primary-tint py-16">
+    <section id="ejemplos-nuevo" ref={root} className="bg-white py-16">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="text-center">
           <span

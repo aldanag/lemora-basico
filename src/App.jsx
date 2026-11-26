@@ -8,6 +8,7 @@ import BasicoPara from "./basico/BasicoPara"
 // import BasicoAsiSeVe from "./basico/BasicoAsiSeVe" // oculta por ahora
 import BasicoIncluye from "./basico/BasicoIncluye"
 import BasicoPasos from "./basico/BasicoPasos"
+import BasicoCrecer from "./basico/BasicoCrecer"
 import BasicoPrecio from "./basico/BasicoPrecio"
 import BasicoComparar from "./basico/BasicoComparar"
 import { LANDING_PLANES } from "./lib/planes"
@@ -80,6 +81,7 @@ export default function BasicoApp() {
         <BasicoPara />
         {/* Oculta por ahora (pedido de Aldi). Para volver a mostrarla: <BasicoAsiSeVe /> */}
         <BasicoIncluye />
+        <BasicoCrecer />
         <BasicoPrecio />
         <BasicoPasos />
         <BasicoComparar />

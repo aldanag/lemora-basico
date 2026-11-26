@@ -20,7 +20,7 @@ export default function BasicoPrecio() {
   useReveal(root)
 
   return (
-    <section id="precio" ref={root} className="bg-ink py-16 text-white">
+    <section id="precio" ref={root} className="bg-lilac py-16 text-ink">
       <div className="mx-auto max-w-6xl px-4 md:px-6">
         <div className="text-center">
           <h2
@@ -29,38 +29,11 @@ export default function BasicoPrecio() {
           >
             Un precio claro. Sin letra chica.
           </h2>
-          <p data-reveal className="mx-auto mt-3 max-w-xl text-balance text-base text-white/70">
+          <p data-reveal className="mx-auto mt-3 max-w-xl text-balance text-base text-ink-soft">
             Probá el primer mes del plan Básico sin costo. Si funciona para vos, te quedás
             contratando el plan que mejor se adapte a tu negocio. Sin letra chica, te das de baja
             cuando quieras y sin vueltas.
           </p>
-        </div>
-
-        <div className="sticky top-[4.5rem] z-30 mt-8 flex justify-center bg-ink/90 py-2 backdrop-blur md:static md:bg-transparent md:py-0 md:backdrop-blur-none">
-          <div
-            role="group"
-            aria-label="Período de pago"
-            className="inline-flex flex-none rounded-full bg-white p-1 ring-1 ring-ink/10"
-          >
-            {opciones.map((op) => (
-              <button
-                key={op.label}
-                type="button"
-                aria-pressed={anual === op.id}
-                onClick={() => setAnual(op.id)}
-                className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300 focus-ring-light motion-reduce:transition-none ${
-                  anual === op.id ? op.on : "text-ink-soft hover:text-ink"
-                }`}
-              >
-                {op.label}
-                {op.badge && (
-                  <span className={INSIGNIA}>
-                    {op.badge}
-                  </span>
-                )}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div
@@ -70,7 +43,34 @@ export default function BasicoPrecio() {
           <div className="flex flex-col">
             <h3 className="text-xl font-extrabold">Plan Básico</h3>
 
-            <div key={`precio-${anual}`} className="cambio-precio mt-4 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <div className="mt-4">
+                <div
+                  role="group"
+                  aria-label="Período de pago"
+                  className="inline-flex flex-none rounded-full bg-primary-tint p-1 ring-1 ring-ink/10"
+                >
+                  {opciones.map((op) => (
+                    <button
+                      key={op.label}
+                      type="button"
+                      aria-pressed={anual === op.id}
+                      onClick={() => setAnual(op.id)}
+                      className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300 focus-ring-light motion-reduce:transition-none ${
+                        anual === op.id ? op.on : "text-ink-soft hover:text-ink"
+                      }`}
+                    >
+                      {op.label}
+                      {op.badge && (
+                        <span className={INSIGNIA}>
+                          {op.badge}
+                        </span>
+                      )}
+                    </button>
+                  ))}
+                </div>
+            </div>
+
+            <div key={`precio-${anual}`} className="cambio-precio mt-5 flex flex-wrap items-baseline gap-x-2 gap-y-1">
               <p className="text-[44px] font-extrabold leading-none">
                 {peso(anual ? basico.anual / 12 : basico.mensual)}
                 <span className="text-lg font-bold text-ink-soft">/mes</span>

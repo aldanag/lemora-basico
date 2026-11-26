@@ -9,8 +9,10 @@ import { abs, AvisoOscuro, IconoCarrito, raiz, u } from "./utiles"
 // todo el país · Compra mínima $70.000"). La tienda es el modelo minimalista de Lemora: franja, encabezado, slider y productos.
 // Lienzo de 768 px que escala con el ancho del marco (--u = 1 px del lienzo). Bucle de 12 s mientras está a la vista (`activa`):
 // franja de Lemora → franja propia (Premium) → vuelve. En reposo (o con "reducir movimiento") queda la franja de Lemora, la del Básico.
-const AD_LEMORA = "Hecho con Lemora  ·  Tu tienda online. Sin comisiones  ·  "
-const AD_PROPIA = "Precios mayoristas  ·  Envíos a todo el país  ·  Compra mínima $ 70.000  ·  "
+// Los mensajes van en una lista y la separación (el punto con aire a los costados) se dibuja aparte: los espacios dobles dentro de un texto
+// se colapsan en el navegador y la franja quedaba apretada.
+const AD_LEMORA = ["Hecho con Lemora", "Tu tienda online. Sin comisiones"]
+const AD_PROPIA = ["Precios mayoristas", "Envíos a todo el país", "Compra mínima $ 70.000"]
 const PRODUCTOS = [
   [lente1, "Lentes Marine", "$ 12.500"],
   [lente2, "Lentes Italy", "$ 14.500"],
@@ -22,7 +24,14 @@ const Franja = ({ clase, fondo, texto, opacidad }) => (
   <div className={clase} style={{ ...abs(48, 120, { width: u(672), height: u(46) }), background: fondo, borderTopLeftRadius: u(34), borderTopRightRadius: u(34), overflow: "hidden", opacity: opacidad }}>
     <div className="ca-pista" style={{ position: "absolute", left: 0, top: 0, height: "100%", display: "flex", alignItems: "center", whiteSpace: "nowrap", fontSize: u(19), fontWeight: 600, color: "#fff", width: "max-content" }}>
       {[0, 1, 2, 3].map((k) => (
-        <span key={k}>{texto}</span>
+        <span key={k} style={{ display: "flex", alignItems: "center", flex: "none" }}>
+          {texto.map((t) => (
+            <span key={t} style={{ display: "flex", alignItems: "center", flex: "none" }}>
+              {t}
+              <span aria-hidden="true" style={{ margin: `0 ${u(24)}`, opacity: 0.8 }}>·</span>
+            </span>
+          ))}
+        </span>
       ))}
     </div>
   </div>

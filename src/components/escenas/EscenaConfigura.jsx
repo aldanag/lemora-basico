@@ -38,6 +38,8 @@ const centro = { display: "flex", alignItems: "center", justifyContent: "center"
 export default function EscenaConfigura({ activa = false }) {
   return (
     <div aria-hidden="true" className={`absolute inset-0 overflow-hidden ${activa ? "cf-activa" : ""}`} style={raiz}>
+      {/* Todo el contenido va un 10 % más chico, desde el centro. */}
+      <div className="absolute inset-0" style={{ transform: "scale(0.9)", transformOrigin: "50% 50%" }}>
       {/* Trazos decorativos de fondo */}
       <svg viewBox="0 0 768 768" className="absolute inset-0 h-full w-full" fill="none">
         <path d="M-20 330C30 270 100 280 120 350C135 400 120 440 90 480" stroke="#CBC0F2" strokeWidth="26" strokeLinecap="round" opacity="0.7" />
@@ -162,6 +164,7 @@ export default function EscenaConfigura({ activa = false }) {
       <Toque clase="cf-tb" x={480} y={166} ini={3.5} dur={12} />
       <Toque clase="cf-tc" x={384} y={282} ini={5.3} dur={12} />
       <Toque clase="cf-td" x={532} y={282} ini={8.6} dur={12} />
+      </div>
     </div>
   )
 }

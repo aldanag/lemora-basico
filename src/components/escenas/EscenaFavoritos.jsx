@@ -64,10 +64,8 @@ export default function EscenaFavoritos({ activa = false }) {
       ))}
 
       <Pegatina className="fv-sticker" xd={738} y={36} giro={6}>
-        <svg viewBox="0 0 24 24" style={{ width: u(48), height: u(48) }} fill="#fff" aria-hidden="true">
-          <path d="M12 21s-8-4.9-9.8-10C1.1 7.700 2.800 4.500 6 4.500c2 0 3.600 1.200 4.400 2.700.3.500 1 .5 1.200 0C12.400 5.700 14 4.500 16 4.500c3.200 0 4.900 3.200 3.800 6.500C18 16.100 12 21 12 21Z" />
-        </svg>
-        <span style={{ fontSize: u(14), fontWeight: 500, letterSpacing: "0.06em", opacity: 0.85, marginTop: u(6) }}>CON UN TOQUE</span>
+        <span style={{ fontSize: u(36), fontWeight: 800, lineHeight: 1.1 }}>Favoritos</span>
+        <span style={{ fontSize: u(14), fontWeight: 500, letterSpacing: "0.06em", opacity: 0.85, marginTop: u(4) }}>CON UN TOQUE</span>
       </Pegatina>
       <AvisoOscuro className="fv-aviso" x={40} y={654} h={66} texto="Guardado en favoritos" />
 

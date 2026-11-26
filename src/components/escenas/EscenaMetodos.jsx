@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faLock } from "@fortawesome/free-solid-svg-icons"
 import { abs, AvisoOscuro, BotonTienda, Pegatina, raiz, Toque, u } from "./utiles"
 
 // Escena "Métodos de pago" del plan Básico: el panel con "Medios de pago" (efectivo y transferencia / WhatsApp, incluidos en todos los
@@ -9,7 +7,6 @@ import { abs, AvisoOscuro, BotonTienda, Pegatina, raiz, Toque, u } from "./utile
 // movimiento") queda todo tildado y guardado. Los tiempos están en index.css (pm-). La tarjeta de Premium no se anima: es el incentivo.
 const VIO = "#6C4FD4"
 const OSC = "#17122F"
-const LIL = "#F1ECFF"
 
 const Tilde = ({ size, color = "#fff" }) => (
   <svg viewBox="0 0 24 24" style={{ width: u(size), height: u(size) }} fill="none" aria-hidden="true">
@@ -57,7 +54,7 @@ export default function EscenaMetodos({ activa = false }) {
       </BotonTienda>
 
       {/* Mercado Pago y cuotas: solo en Premium */}
-      <div style={{ ...abs(61, 466, { width: u(646), height: u(188) }), background: "#fff", borderRadius: u(30), boxShadow: `0 ${u(16)} ${u(40)} rgba(94,70,190,0.2)` }} />
+      <div style={{ ...abs(61, 466, { width: u(646), height: u(150) }), background: "#fff", borderRadius: u(30), boxShadow: `0 ${u(16)} ${u(40)} rgba(94,70,190,0.2)` }} />
       <div style={{ ...abs(96, 494), display: "flex", alignItems: "center", gap: u(14), whiteSpace: "nowrap" }}>
         <span style={{ fontSize: u(28), fontWeight: 800, color: OSC, lineHeight: 1.2 }}>Mercado Pago y cuotas</span>
         <span style={{ display: "inline-flex", alignItems: "center", gap: u(7), padding: `${u(7)} ${u(16)}`, borderRadius: 999, background: OSC, color: "#fff", fontSize: u(18), fontWeight: 800, lineHeight: 1 }}>
@@ -70,10 +67,6 @@ export default function EscenaMetodos({ activa = false }) {
       <span style={{ ...abs(96, 548, { width: u(576) }), fontSize: u(22), fontWeight: 600, color: OSC, lineHeight: 1.4 }}>
         Cobrá con tarjeta y ofrecé cuotas con Premium.
       </span>
-      <div style={{ ...abs(96, 596, { width: u(300), height: u(40) }), borderRadius: u(11), boxShadow: `inset 0 0 0 ${u(2)} #CFC9E0`, background: LIL, color: VIO, ...centro, gap: u(10), fontSize: u(19), fontWeight: 700 }}>
-        <FontAwesomeIcon icon={faLock} style={{ width: u(15), height: u(15) }} aria-hidden="true" />
-        Disponible en Premium
-      </div>
 
       {/* Sticker */}
       <Pegatina xd={730} y={40} giro={6}>
