@@ -11,7 +11,7 @@ const destacadas = ["Cargá productos o servicios ilimitados"]
 
 const opciones = [
   { id: false, label: "Mensual", on: "bg-ink text-white" },
-  { id: true, label: "Anual", on: "bg-primary text-white", badge: "Ahorrá 11%" },
+  { id: true, label: "Anual", on: "bg-primary text-white", badge: "Ahorrá 17%" },
 ]
 
 export default function BasicoPrecio() {
