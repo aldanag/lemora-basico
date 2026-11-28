@@ -96,7 +96,7 @@ export default function BasicoHero() {
             <svg
               viewBox="0 0 400 420"
               fill="none"
-              className="absolute inset-0 h-full w-full lg:hidden"
+              className="absolute inset-0 hidden h-full w-full md:block lg:hidden"
               preserveAspectRatio="xMidYMid slice"
             >
               <path
@@ -118,6 +118,21 @@ export default function BasicoHero() {
                 transform="translate(568 182) rotate(-90) scale(0.81) translate(-125 -85)"
                 stroke="#ff9a52"
                 strokeWidth="17"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {/* En celular, el rulo naranja va en el hueco de la izquierda, abajo del cartel lima: entra cortado por el borde y sale por detrás del hombre (no se le ven las puntas) */}
+            <svg
+              viewBox="-34 0 240 236"
+              fill="none"
+              aria-hidden="true"
+              className="absolute -left-5 top-[3.6rem] h-[4.5rem] w-auto overflow-visible md:hidden"
+            >
+              <path
+                d="M-24 4.79399C4.05737 62.7365 82.8158 114.99 123.155 113.083C162.492 113.23 187.271 85.925 176.34 64.0597C162.785 34.5559 133.234 43.0034 105.4 71.3582C73.5077 102.816 60.0898 143.297 81.8089 171.704C100.95 197.58 135.704 199.301 166.542 219.449C197.3 239.5 228.1 259.6 258.9 279.7C289.7 299.8 320 330 340 370C352 400 410 450 480 510"
+                stroke="#ff9a52"
+                strokeWidth="21"
+                strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>

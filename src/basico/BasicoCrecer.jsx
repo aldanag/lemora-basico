@@ -32,7 +32,7 @@ const VENTAJAS = [
   {
     icono: faBullhorn,
     titulo: "Marketing que vende",
-    texto: "Notificación de confianza, ofertas por tiempo limitado, promociones y una ventana emergente al salir.",
+    texto: "Notificación de confianza, ofertas por tiempo limitado, promociones, descuentos por cantidad, Pixel de Meta y una ventana emergente al salir.",
   },
   {
     icono: faTruckFast,
